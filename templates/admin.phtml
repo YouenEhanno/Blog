@@ -1,0 +1,31 @@
+<h2><i class="fa fa-cogs"></i> Panneau d'administration</h2>
+
+<nav>
+    <a href="../controllers/add_post.php">Rédiger un nouvel article</a>
+</nav>
+<table class="ui celled striped table">
+    <caption>Liste des articles</caption>
+    <thead>
+        <tr>
+            <th>Titre</th>
+            <th>Article</th>
+            <th>Auteur</th>
+            <th>Catégorie</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($posts as $post): ?>
+            <tr>
+                <td><a href="../controllers/show_post.php?id=<?=intval($post['Id'])?>"><?=htmlspecialchars($post['Title'])?></a></td>
+                <td><?=substr(htmlspecialchars($post['Contents']), 0, 200)?></td>
+                <td><?=htmlspecialchars($post['FirstName'])?> <?=htmlspecialchars($post['LastName'])?></td>
+                <td><?=htmlspecialchars($post['Category_Name'])?></td>
+                <td>
+                    <a class="edit" href="../controllers/edit_post.php?id=<?=intval($post['Id'])?>"><i class="fa fa-edit"></i></a>
+                    <a class="remove" href="../controllers/delete.php?table=post&id=<?=intval($post['Id'])?>"><i class="fa fa-trash"></i></a>
+                </td>
+            </tr>
+        <?php endforeach?>
+    </tbody>
+</table>

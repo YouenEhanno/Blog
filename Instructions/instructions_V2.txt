@@ -1,0 +1,31 @@
+Organisation du code :
+	- Découper le template :
+    	1 - Créer un layout.phtml (qui va contenir toutes nos lib, css, ...) , dans lequel on affichera le template en cours dans le main
+        
+        2 - Créer un repertoire "templates" dans lequel on aura : 
+        	- index.phtml
+            - admin.phtml
+            - show_post.phtml
+            - add_post.phtml
+            - edit_post.phtml
+        
+    - Organiser les repertoires :
+    	1 - Créer un repertoire "controllers" dans lequel on aura :
+        	- index.php
+        	- admin.php
+        	- show_post.php
+        	- add_post.php
+        	- edit_post.php
+        	- delete_post.php
+        	- add_comment.php
+            VIDE dans un 1er temps
+        
+        2 - Créer un repertoire "config" qui va contenir le fichier de connection à la bdd : bdd_connexion.php
+        
+        3 - Créer un repertoire "css" qui va contenir : 
+        	- main.css
+            - theme.css
+            - form.css
+
+Les liens dans le menu Header:
+	- Au survol du lien il devient brillant

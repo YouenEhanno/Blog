@@ -1,0 +1,28 @@
+<div class="ui middle aligned center aligned grid">
+  <div class="column">
+    <h2 class="ui blue image header">
+      <i class="fas fa-user-circle"></i>
+      <div class="content">
+        Login
+      </div>
+    </h2>
+    <form action="../controllers/login.php" method="post" class="ui large form">
+      <div class="ui stacked segment">
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="lock icon"></i>
+            <input type="email" name="email" placeholder="Email">
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="lock icon"></i>
+            <input type="password" name="password" placeholder="Password">
+          </div>
+        </div>
+        <button type="submit" class="ui fluid large blue submit button">Login</button>
+      </div>
+      <div class="ui error message"></div>
+    </form>
+  </div>
+</div>

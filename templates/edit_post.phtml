@@ -1,0 +1,27 @@
+<!-- Page d'édition d'un article -->
+<h2><i class="fa fa-pencil"></i> Editer un article</h2>
+
+<!-- Formulaire de mise à jour d'un article -->
+<form class="ui form" action="<?= $path ?>controllers/edit_post.php" method="post">
+
+    <!-- Utilisation d'un champ caché pour spécifier à quel article rattacher le commentaire -->
+    <input type="hidden" name="postId" value="<?= intval($post['Id']) ?>">
+
+    <fieldset>
+        <legend><i class="fa fa-sticky-note-o"></i>Mettre à jour un Article</legend>
+        <div class="ui form">
+            <div class="field">
+                <label>Titre</label>
+                <input type="text" name="title" value="<?= htmlspecialchars($post['Title']) ?>">
+            </div>
+        </div>
+        <div class="ui form">
+            <div class="field">
+                <label>Votre Article</label>
+                <textarea name="contents" rows="5"><?= htmlspecialchars($post['Contents']) ?></textarea>
+            </div>
+        </div>
+        <button class="ui button" type="submit">Enregistrer</button>
+        <button type="reset" class="negative ui button">Annuler</button>
+    </fieldset>
+</form>

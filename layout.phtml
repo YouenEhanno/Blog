@@ -1,0 +1,109 @@
+<?php
+    // Init du path générique
+    // Equivalent du if ternaire ci dessous
+    // if($template !== 'index') {
+    //     $path = '../';
+    // } else {
+    //     $path = '';
+    // }
+
+    $path = $template !== 'index' ? '../' : '';
+
+    // Init session
+    if(session_status() == PHP_SESSION_NONE)
+    {
+        // Démarrage du module PHP de gestion des sessions.
+        // Ce qui donne accès à $_SESSION
+        session_start();
+    }
+?>
+<!DOCTYPE html>
+<html lang="fr">
+
+	<head>
+		<meta charset="utf-8">
+		<title>Blog custom v3</title>
+
+		<!-- Feuilles de style externes -->
+		<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+		 crossorigin="anonymous"> -->
+		 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'/>
+		<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css' />
+
+		<!-- Feuilles de style de l'application -->
+		<link rel="stylesheet" href="<?= $path ?>css/style.css">
+	</head>
+
+	<body class="pushable">
+		<div class="ui large top fixed menu transition visible" style="display: flex !important;">
+			<div class="ui container">
+				<a href="<?= $path ?>index.php" class="active item"><i class="fa fa-microphone"></i>&nbsp; Blog v3</a>
+				<div class="right menu">
+
+					<?php if (!empty($_SESSION) and $_SESSION['user']['admin']) : ?>
+					<a href="<?= $path ?>controllers/admin.php" class="item">Administration</a>
+					<?php endif; ?>
+
+					<?php if (empty($_SESSION)) : ?>
+					<div class="item">
+						<a href="<?= $path ?>controllers/login.php" class="ui button"><i class="fa fa-user-lock"></i> Log in</a>
+					</div>
+					<div class="item">
+						<a href="<?= $path ?>controllers/signup.php" class="ui primary button"><i class="fa fa-user-plus"></i>
+							Sign Up</a>
+					</div>
+					<?php endif; ?>
+					<!-- Si une personne est connecté -->
+					<?php if (!empty($_SESSION)) : ?>
+					<div class="item">
+						Hello
+						<?= ucfirst($_SESSION['user']['name']) ?>
+					</div>
+					<div class="item">
+						<a href="<?= $path ?>controllers/logout.php?id=<?= $_SESSION['user']['id'] ?>" class="ui red button">Sign out</a>
+					</div>
+					<?php endif; ?>
+				</div>
+			</div>
+		</div>
+
+		<main>
+			<div class="ui vertical stripe segment">
+				<!-- Chargement du template PHTML spécifié par le programme PHP -->
+				<div class="ui text container">
+					<?php include "templates/$template.phtml" ?>
+				</div>
+			</div>
+		</main>
+
+		<!-- Pied de page commun de l'application -->
+		<div class="ui inverted vertical footer segment">
+			<div class="ui container">
+				<div class="ui stackable inverted divided equal height stackable grid">
+					<div class="four wide column">
+						<h4 class="ui inverted header">About</h4>
+						<div class="ui inverted link list">
+							<a href="#" class="item">Sitemap</a>
+							<a href="#" class="item">Contact Us</a>
+						</div>
+					</div>
+					<div class="four wide column">
+						<h4 class="ui inverted header">Services</h4>
+						<div class="ui inverted link list">
+							<a href="#" class="item">Banana Pre-Order</a>
+							<a href="#" class="item">DNA FAQ</a>
+						</div>
+					</div>
+					<div class="eight wide column">
+						<h4 class="ui inverted header">Footer Header</h4>
+						<p>Extra space for a call to action inside the footer that could help re-engage users.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Scripts -->
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js'></script>
+	</body>
+</html>

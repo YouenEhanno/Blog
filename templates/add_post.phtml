@@ -1,0 +1,62 @@
+<!-- Page d'ajout d'un article -->
+<h2><i class="fa fa-pencil"></i> Rédiger un nouvel article</h2>
+
+<!-- Formulaire de saisie d'un nouvel article -->
+<form class="ui form" action="../controllers/add_post.php" method="post">
+    <fieldset>
+        <legend><i class="fa fa-sticky-note-o"></i> Nouvel article</legend>
+        <div class="ui form">
+            <div class="field">
+                <label>Titre</label>
+                <input type="text" name="title">
+            </div>
+        </div>
+        <div class="ui form">
+            <div class="field">
+                <label>Votre Article</label>
+                <textarea name="contents" rows="5"></textarea>
+            </div>
+        </div>
+        <div class="ui form">
+            <div class="field">
+                <label>Auteur</label>
+                <div id="authors" class="ui selection dropdown">
+                    <input type="hidden" name="authors">
+                    <i class="dropdown icon"></i>
+                    <div class="default text">Auteur</div>
+                    <div class="menu">
+                        <?php foreach ($authors as $author) : ?>
+                        <div class="item" data-value="<?= intval($author['Id']) ?>">
+                            <?= $author['FirstName'].' '. $author['LastName'] ?>
+                        </div>
+                        <?php endforeach ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ui form">
+            <div class="field">
+                <label>Catégorie</label>
+                <div id="categories" class="ui selection dropdown">
+                    <input type="hidden" name="category">
+                    <i class="dropdown icon"></i>
+                    <div class="default text">Catégorie</div>
+                    <div class="menu">
+                        <?php foreach($categories as $category): ?>
+                        <div class="item" data-value="<?= intval($category['Id']) ?>">
+                            <?= $category['Name'] ?>
+                        </div>
+                        <?php endforeach ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="ui button" type="submit">Enregistrer</button>
+        <button type="reset" class="negative ui button">Annuler</button>
+    </fieldset>
+</form>
+
+<script>
+    $('#authors.dropdown').dropdown();
+    $('#categories.dropdown').dropdown();
+</script>
